@@ -1,0 +1,26 @@
+.mainDiv{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.LoginBtn{
+    margin-top: 5px;
+}
+.createAc{
+    background: green
+}
+.contentDiv{
+    position: relative;
+    left: 30%;
+    bottom: -2rem;
+}
+.tittleTask{
+position: relative;
+left: 45%;
+}
+.cardDiv{
+    height: 100%;
+    width: 100%;
+}
