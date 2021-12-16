@@ -67,22 +67,25 @@ function Uncompletetask() {
     setSnoFlag(no);
   };
 
+  let userToken = useSelector((user) => user.createUserReducer);
+
   let remove = (e) => {
-    dispatch(removeTask(e));
+    dispatch(removeTask({id:e,token:userToken.token}));
   };
   let flagRemove = (e) => {
-    dispatch(removeFlag(e));
+    dispatch(removeFlag({id:e,token:userToken.token}));
   };
   let flagAdd = (e) => {
-    dispatch(updateFlag(e));
+    dispatch(updateFlag({id:e,token:userToken.token}));
   };
 
   let allData = (e) => {
-    dispatch(getData(e));
+    dispatch(getData({uid:e,token:userToken.token}));
   };
   let editData = (data) => {
     dispatch(editTask(data));
   };
+
 
   return (
     <div className="App" className="cardDiv">
@@ -109,8 +112,8 @@ function Uncompletetask() {
       </div>
 
       <div className="contentDiv">
-        <>
-          {tasks[0].map((e) => {
+        <>{tasks[0].length!==0?
+          tasks[0].map((e) => {
             console.log(e._id);
             return (
               <>
@@ -175,10 +178,12 @@ function Uncompletetask() {
                     </ListItem>
                   </List>
                 </Card>
-                :<h3>No tasks</h3>}
+                :""}
               </>
             );
-          })}
+          })
+        :<h3>No tasks</h3>}
+        
         </>
       </div>
     </div>
