@@ -17,8 +17,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
-// import Completelist from "./Completelist";
-// import Uncompletetask from "./Uncompletetask";
 import { dataBaseTasks } from "../redux/reducers/reducer";
 import {
   updateFlag,
@@ -65,22 +63,20 @@ function Mytasks() {
    let navigate=useNavigate();
   let tasks = useSelector((tasks) => tasks.dataBaseTasks);
   console.log(tasks);
-  let a = (no) => {
-    setSnoFlag(no);
-  };
+  let userToken = useSelector((user) => user.createUserReducer);
 
   let remove = (e) => {
-    dispatch(removeTask(e));
+    dispatch(removeTask({id:e,token:userToken.token}));
   };
   let flagRemove = (e) => {
-    dispatch(removeFlag(e));
+    dispatch(removeFlag({id:e,token:userToken.token}));
   };
   let flagAdd = (e) => {
-    dispatch(updateFlag(e));
+    dispatch(updateFlag({id:e,token:userToken.token}));
   };
 
   let allData = (e) => {
-    dispatch(getData(e));
+    dispatch(getData({uid:e,token:userToken.token}));
   };
   let editData = (data) => {
     dispatch(editTask(data));
@@ -158,6 +154,7 @@ function Mytasks() {
                           editData({
                             taskid: e._id,
                             data: ele.currentTarget.innerText,
+                            token:userToken.token
                           });
                  
                         }}
@@ -169,6 +166,7 @@ function Mytasks() {
                           onClick={() => {
                             console.log(e);
                             remove(e._id);
+                            const uid=e.userid
                             allData(e.userid);
                           }}
                         >

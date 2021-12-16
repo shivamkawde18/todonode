@@ -5,8 +5,6 @@ import { createUserReducer } from "../redux/reducers/reducer";
 import { useSelector, useDispatch } from "react-redux";
 function App() {
   let userToken = useSelector((user) => user.createUserReducer);
-  console.log(userToken);
-
   return (
     <div className="">
       {userToken ? <Home user={userToken.user} token={userToken.token}></Home> : <Login></Login>}

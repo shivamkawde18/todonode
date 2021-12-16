@@ -1,6 +1,5 @@
 import { yellow } from "@material-ui/core/colors";
 import { takeEvery, takeLatest, put, call } from "redux-saga/effects";
-// import { insertData,  } from "../Actions/action";
 import {
   loginApi,
   emailPasswordApi,
@@ -32,31 +31,22 @@ function* getDBData(action) {
   console.log(response);
   yield put({ type: "getDataFromDb", data: response });
 }
-
 function* updateFlag(action) {
   console.log(action);
   console.log(action);
   let data = yield call(updateFlagApi, action);
-
-  //yield put({type:"getDataFromDb",data:response});
 }
-
 function* removeFlag(action) {
   console.log(action);
   console.log(action);
   let data = yield call(removeFlagApi, action);
-
-  //yield put({type:"getDataFromDb",data:response});
 }
-
 function* removeTask(action) {
   let data = yield call(removeTaskApi, action);
 }
-
 function* editTask(action) {
   let data = yield call(editTaskApi, action);
 }
-
 const handleMessage = function* handleMessage(params) {
   yield takeEvery("createUser", loginRequest);
   yield takeEvery("loginUser", loginwithEmailAndPassword);

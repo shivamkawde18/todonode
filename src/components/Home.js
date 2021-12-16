@@ -10,8 +10,8 @@ import "../Home.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout,insertData ,getData} from "../redux/Actions/action";
-import {dataBaseTasks} from "../redux/reducers/reducer";
+import { logout, insertData, getData } from "../redux/Actions/action";
+import { dataBaseTasks } from "../redux/reducers/reducer";
 function Home(props) {
   const useStyles = makeStyles({
     root: {
@@ -51,9 +51,9 @@ function Home(props) {
             Logout
           </Button>
         </div>
-        
+
         <h1 className="title">Enter Your Task</h1>
-  
+
         <Card className={`${classes.root} framCard`}>
           <div className="inputDiv">
             <InputLabel id="demo-simple-select-label">Color</InputLabel>
@@ -92,9 +92,9 @@ function Home(props) {
                   check: null,
                   color: color,
                   time: new Date().toLocaleTimeString(),
-                  userid:props.user.uid
+                  userid: props.user.uid,
                 };
-                dispatch(insertData({obj,token:props.token}));
+                dispatch(insertData({ obj, token: props.token }));
               }}
             >
               Add Task
@@ -102,13 +102,16 @@ function Home(props) {
           </div>
         </Card>
         <Button
-         variant="contained"
-         color="secondary"
-         onClick={()=>{
-           dispatch(getData(props.user.uid));
-           navigate("/Mytasks");
-         }}
-        >Open Your Tasks</Button>
+          variant="contained"
+          color="secondary"
+          onClick={() => {
+            const uid = props.user.uid;
+            dispatch(getData({ uid, token: props.token }));
+            navigate("/Mytasks");
+          }}
+        >
+          Open Your Tasks
+        </Button>
       </Container>
       <div></div>
     </>

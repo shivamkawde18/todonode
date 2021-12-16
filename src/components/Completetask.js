@@ -50,23 +50,15 @@ function Completetask() {
     borderBottom: "36px solid transparent",
   };
   const classes = useStyles();
-  let [arrow, setArrow] = useState(false);
   let [detail, setDetail] = useState(false);
   let [snoFlag, setSnoFlag] = useState();
   let [removeDetail, setRemoveDetail] = useState();
   let [getDetail, setGetDetail] = useState(true);
-  let [completeList, setCompeleteList] = useState(false);
-  let [Uncomplete, setUncompleteTask] = useState(false);
   let arr = [];
   arr = useSelector((state) => state.instData);
   let dispatch = useDispatch();
   let navigate=useNavigate()
   let tasks = useSelector((tasks) => tasks.dataBaseTasks);
-  console.log(tasks);
-  let a = (no) => {
-    setSnoFlag(no);
-  };
-
   let remove = (e) => {
     dispatch(removeTask(e));
   };
